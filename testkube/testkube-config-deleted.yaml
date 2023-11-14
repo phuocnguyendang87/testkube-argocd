@@ -1,0 +1,21 @@
+apiVersion: testkube.io/v1beta1
+kind: Testkube
+metadata:
+  name: testkube-knative
+  namespace: testkube
+spec:
+  image: dev.local/testkube:latest
+  replicas: 1
+  service:
+    type: LoadBalancer
+    ports:
+    - port: 80
+      targetPort: 8080
+      name: http
+    - port: 8443
+      targetPort: 8443
+      name: https
+  persistence:
+    enabled: false
+  externalDatabase:
+    enabled: false

@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testkube-deployment
+  namespace: testkube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testkube
+  template:
+    metadata:
+      labels:
+        app: testkube
+    spec:
+      containers:
+      - name: testkube
+        image: kubeshop/testkube-cli:latest
+        ports:
+        - containerPort: 8080
+
+# apiVersion: serving.knative.dev/v1
+# kind: Service
+# metadata:
+#   name: provisioning-service
+#   namespace: connectivity
+# spec:
+#   template:
+#     metadata:
+#       annotations:
+#         autoscaling.knative.dev/min-scale: "0"
+#         autoscaling.knative.dev/max-scale: "10"
+#     spec:
+#       containers:
+#       - image: dev.local/provisioning-service
+#         imagePullPolicy: Never
+#         ports:
+#             - containerPort: 8080
+#         env:
+#           - name: APP_PORT
+#             value: "8080"
+#           - name: CONNECTIVITY_BUS_BROKER_URL
+#             value: http://broker-ingress.knative-eventing.svc.cluster.local/connectivity/connectivity-bus
+#           - name: CONFIGCAT_SDK_KEY
+#             value: 0anbCKBc5UiA-IEaZVaLAw/C4-xmyPCdkCzDBnngaWj_g
+#           - name: DATABASE_PROJECT_ENDPOINT
+#             # value: 192.168.20.105
+#             value: 172.24.0.24 # Local_IP_Address
+#             # value: 192.168.0.104
+#           - name: DATABASE_PROJECT_PORT
+#             value: "5432"  # Port should be a string
+#           - name: DATABASE_PROJECT_USERNAME
+#             value: connectivity
+#           - name: DATABASE_PROJECT_PASSWORD
+#             value: password
+#           - name: DATABASE_PROJECT_DATABASE
+#             value: project
+#           - name: DATABASE_PROJECT_QUERY
+#             value: sslmode=disable
+#           - name: FACADE_API_URL
+#             value: http://facade-service.connectivity
+#           - name: HIVEMIND_PROJECT_CONFIG_KEY
+#             value: connectivity_project
+#           - name: HIVEMIND_WHATSAPP_BILLING_KEY
+#             value: connectivity_whatsapp_details
+#           - name: SINCH_META_BUSINESS_MANAGERS
+#             value: '{"SINCH_UK": "1611825839115900", "SINCH_SEP": "588972188192158", "SINCH_BR": "257787147678517"}'
+#           - name: WEBHOOK_TARGET_SINCH_PROVISIONING_API
+#             value: http://local/connectivity/firehose/v1/provisioning-api-callback
+#             # value: https://api.au.qa.saas.sinch.com/connectivity/firehose/v1/provisioning-api-callback
+#           - name: WEBHOOK_SECRET_SINCH_PROVISIONING_API
+#             value: ENYYjZQzaXPfxVZgV3Eo1PX3Y8Ns5et4
+#           - name: WEBHOOK_TARGET_SINCH_CONVERSATION_API
+#             # value: https://api.au.qa.saas.sinch.com/connectivity/firehose/v1/conversation-api-callback
+#             value: http://local/connectivity/firehose/v1/conversation-api-callback
+#           - name: WEBHOOK_SECRET_SINCH_CONVERSATION_API
+#             value: ENYYjZQzaXPfxVZgV3Eo1PX3Y8Ns5et4
+#           - name: SINCH_LIVECHAT_GRPC_API_URLS
+#             value: '{"eu": "https://grpc-web.sinch-chat.staging.sinch.com"}'
+#           - name: MCP_LISTENER_URL
+#             value: http://localhost:8083/v1/mcp/listener
+#           - name: MCP_LISTENER_TOKEN
+#             value: useless
+#           - name: MCP_LISTENER_TIMEOUT
+#             value: "30"   
+#           - name: SINCH_DEMO_SENDERS
+#             value: '{"WHATSAPP":{"projectId":"1","configurationId":"2"}}'

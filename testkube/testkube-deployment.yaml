@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testkube-api
+  namespace: testkube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testkube-api
+  template:
+    metadata:
+      labels:
+        app: testkube-api
+    spec:
+      containers:
+      - name: testkube-api
+        image: dev.local/testkube-api-server
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
