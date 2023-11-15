@@ -8,7 +8,7 @@ spec:
  source:
    repoURL: https://github.com/phuocnguyendang87/testkube-argocd.git
    targetRevision: HEAD
-   path: testkube/postman-collection/hello-kubernetes.json
+   path: testkube/postman-collection
    plugin:
      name: "testkube-v1.0"
  destination:
