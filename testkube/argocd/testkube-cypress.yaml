@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+ name: testkube-cypress-tests
+ namespace: argocd
+spec:
+ project: default
+ source:
+  #  repoURL: https://github.com/kubeshop/testkube.git
+  #  targetRevision: HEAD
+  #  path: test/cypress/executor-tests/cypress-11/cypress/e2e
+   repoURL: https://github.com/phuocnguyendang87/testkube-argocd.git
+   targetRevision: HEAD
+   path: testkube/cypress-e2e
+   plugin:
+     name: "testkube-v1.0"
+ destination:
+   server: https://kubernetes.default.svc
+   namespace: testkube
