@@ -34,4 +34,9 @@ data:
         command: [bash, -c]
         args:
           - |
-            testkube create test --name cypress-test-5 --type cypress/project --test-content-type git-dir --git-uri https://github.com/kubeshop/testkube.git --git-branch main --git-path test/cypress/executor-tests/cypress-11 --variable CYPRESS_CUSTOM_ENV=CYPRESS_CUSTOM_ENV_value --executor-args "--env NON_CYPRESS_ENV=NON_CYPRESS_ENV_value"
+            kubectl apply -f .
+            
+# testkube create test --name cypress-henry-test-1 --type cypress/project --test-content-type git --git-uri https://github.com/kubeshop/testkube.git --git-branch main --git-path test/cypress/executor-tests/cypress-11 --variable CYPRESS_CUSTOM_ENV=CYPRESS_CUSTOM_ENV_value --executor-args "--env NON_CYPRESS_ENV=NON_CYPRESS_ENV_value"
+# testkube generate tests-crds ./cypress-e2e.yaml --type cypress/project
+# testkube create test --name cypress-test-7 --type cypress/project --test-content-type git --git-uri https://github.com/kubeshop/testkube.git --git-branch main --git-path test/cypress/executor-tests/cypress-11 --variable CYPRESS_CUSTOM_ENV=CYPRESS_CUSTOM_ENV_value --executor-args "--env NON_CYPRESS_ENV=NON_CYPRESS_ENV_value"
+# kubectl apply -f cypress-e2e.yaml .

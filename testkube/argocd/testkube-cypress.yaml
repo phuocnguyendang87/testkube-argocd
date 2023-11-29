@@ -6,9 +6,12 @@ metadata:
 spec:
  project: default
  source:
-   repoURL: https://github.com/kubeshop/testkube.git
+   repoURL: https://github.com/phuocnguyendang87/testkube-argocd.git
    targetRevision: HEAD
-   path: test/cypress/executor-tests/cypress-11
+   path: testkube/cypress-e2e
+#   #  repoURL: https://github.com/kubeshop/testkube.git
+#   #  targetRevision: HEAD
+#   #  path: test/cypress/executor-tests/cypress-11
    plugin:
      name: "testkube-v1.0"
  destination:
