@@ -1,22 +1,3 @@
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: argocd-cm-plugin
-#   namespace: argocd
-# data:
-#   plugin.yaml: |
-#     apiVersion: argoproj.io/v1alpha1
-#     kind: ConfigManagementPlugin
-#     metadata:
-#       name: testkube
-#     spec:
-#       version: v1.0
-#       generate:
-#         command: [bash, -c]
-#         args:
-#           - |
-#             testkube generate tests-crds .
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -34,7 +15,36 @@ data:
         command: [bash, -c]
         args:
           - |
-            kubectl apply -f .
+            testkube generate tests-crds .
+
+# testkube create test --name cypress-henry-test-1 --type cypress/project --test-content-type git --git-uri https://github.com/kubeshop/testkube.git --git-branch main --git-path test/cypress/executor-tests/cypress-11 --variable CYPRESS_CUSTOM_ENV=CYPRESS_CUSTOM_ENV_value --executor-args "--env NON_CYPRESS_ENV=NON_CYPRESS_ENV_value"
+# testkube generate tests-crds .
+
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: argocd-cm-plugin
+#   namespace: argocd
+# data:
+#   plugin.yaml: |
+#     apiVersion: argoproj.io/v1alpha1
+#     kind: ConfigManagementPlugin
+#     metadata:
+#       name: testkube
+#     spec:
+#       version: v1.0
+#       generate:
+#         command: [bash, -c]
+#         args:
+#           - |
+#             testkube create test --name cypress-henry-test-1 --type cypress/project --test-content-type git --git-uri https://github.com/kubeshop/testkube.git --git-branch main --git-path test/cypress/executor-tests/cypress-11 --variable CYPRESS_CUSTOM_ENV=CYPRESS_CUSTOM_ENV_value --executor-args "--env NON_CYPRESS_ENV=NON_CYPRESS_ENV_value"
+
+
+# discover:
+#   fileName: "cypress-e2e.yaml"      
+# find:
+        #   glob: "**/Chart.yaml"
+        #   command: [sh, -c, find . -name env.yaml]
             
 # testkube create test --name cypress-henry-test-1 --type cypress/project --test-content-type git --git-uri https://github.com/kubeshop/testkube.git --git-branch main --git-path test/cypress/executor-tests/cypress-11 --variable CYPRESS_CUSTOM_ENV=CYPRESS_CUSTOM_ENV_value --executor-args "--env NON_CYPRESS_ENV=NON_CYPRESS_ENV_value"
 # testkube generate tests-crds ./cypress-e2e.yaml --type cypress/project

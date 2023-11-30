@@ -1,12 +1,12 @@
 apiVersion: tests.testkube.io/v3
 kind: Test
 metadata:
-  name: cypress-test-5
+  name: henry-cypress-test-1
   namespace: testkube
 spec:
   type: cypress/project
   content:
-    type: git-dir
+    type: git
     repository:
       type: git
       uri: https://github.com/kubeshop/testkube.git

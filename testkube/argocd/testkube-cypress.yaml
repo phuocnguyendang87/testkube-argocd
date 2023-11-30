@@ -8,12 +8,9 @@ spec:
  source:
    repoURL: https://github.com/phuocnguyendang87/testkube-argocd.git
    targetRevision: HEAD
-   path: testkube/cypress-e2e
-#   #  repoURL: https://github.com/kubeshop/testkube.git
-#   #  targetRevision: HEAD
-#   #  path: test/cypress/executor-tests/cypress-11
-   plugin:
-     name: "testkube-v1.0"
+   path: testkube/cypress-crds
+  #  plugin:
+    #  name: "testkube-v1.0"
  destination:
    server: https://kubernetes.default.svc
    namespace: testkube
