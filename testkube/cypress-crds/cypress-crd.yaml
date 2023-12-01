@@ -27,7 +27,7 @@
 apiVersion: tests.testkube.io/v3
 kind: Test
 metadata:
-  name: cypress-12-executor-smoke-chrome
+  name: cypress-12-executor-smoke
   namespace: testkube
 spec:
   type: cypress/project
@@ -46,7 +46,7 @@ spec:
         type: basic
     args:
       - --browser
-      - chrome
+      - electron
       - --env
       - NON_CYPRESS_ENV=NON_CYPRESS_ENV_value
       - --config
