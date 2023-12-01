@@ -27,7 +27,7 @@
 apiVersion: tests.testkube.io/v3
 kind: Test
 metadata:
-  name: cypress-12-executor-smoke
+  name: cypress-12-executor
   namespace: testkube
 spec:
   type: cypress/project
