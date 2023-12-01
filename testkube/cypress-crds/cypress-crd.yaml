@@ -1,7 +1,33 @@
+# apiVersion: tests.testkube.io/v3
+# kind: Test
+# metadata:
+#   name: henry-cypress-test-1
+#   namespace: testkube
+# spec:
+#   type: cypress/project
+#   content:
+#     type: git
+#     repository:
+#       type: git
+#       uri: https://github.com/kubeshop/testkube.git
+#       branch: main
+#       path: test/cypress/executor-tests/cypress-11
+#       authType: basic
+#   executionRequest:
+#     variables:
+#       CYPRESS_CUSTOM_ENV:
+#         name: CYPRESS_CUSTOM_ENV
+#         value: "CYPRESS_CUSTOM_ENV_value"
+#         type: basic
+#     args:
+#       - "--env"
+#       - "NON_CYPRESS_ENV=NON_CYPRESS_ENV_value"
+#     executePostRunScriptBeforeScraping: false
+
 apiVersion: tests.testkube.io/v3
 kind: Test
 metadata:
-  name: henry-cypress-test-1
+  name: cypress-12-executor-smoke-chrome
   namespace: testkube
 spec:
   type: cypress/project
@@ -9,17 +35,21 @@ spec:
     type: git
     repository:
       type: git
-      uri: https://github.com/kubeshop/testkube.git
+      uri: https://github.com/kubeshop/testkube
       branch: main
-      path: test/cypress/executor-tests/cypress-11
-      authType: basic
+      path: test/cypress/executor-tests/cypress-12
   executionRequest:
     variables:
       CYPRESS_CUSTOM_ENV:
         name: CYPRESS_CUSTOM_ENV
-        value: "CYPRESS_CUSTOM_ENV_value"
+        value: CYPRESS_CUSTOM_ENV_value
         type: basic
     args:
-      - "--env"
-      - "NON_CYPRESS_ENV=NON_CYPRESS_ENV_value"
-    executePostRunScriptBeforeScraping: false
+      - --browser
+      - chrome
+      - --env
+      - NON_CYPRESS_ENV=NON_CYPRESS_ENV_value
+      - --config
+      - video=false
+    jobTemplate: "apiVersion: batch/v1\nkind: Job\nspec:\n  template:\n    spec:\n      containers:\n        - name: \"{{ .Name }}\"\n          image: {{ .Image }}\n          resources:\n            requests:\n              memory: 6Gi\n              cpu: 4\n"
+    activeDeadlineSeconds: 600
